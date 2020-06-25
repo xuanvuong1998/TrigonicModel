@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrigonicModel", "TrigonicModel\TrigonicModel.csproj", "{176FCEAE-AC0D-4E26-8015-EC77A578298B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestModel", "TestModel\TestModel.csproj", "{CF81F69C-4032-4DC2-9C03-5A7A76D118FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{176FCEAE-AC0D-4E26-8015-EC77A578298B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{176FCEAE-AC0D-4E26-8015-EC77A578298B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{176FCEAE-AC0D-4E26-8015-EC77A578298B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{176FCEAE-AC0D-4E26-8015-EC77A578298B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF81F69C-4032-4DC2-9C03-5A7A76D118FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF81F69C-4032-4DC2-9C03-5A7A76D118FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF81F69C-4032-4DC2-9C03-5A7A76D118FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF81F69C-4032-4DC2-9C03-5A7A76D118FC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D1D2EAD2-4C68-4802-AADB-B42DEAB3E206}
+	EndGlobalSection
+EndGlobal
