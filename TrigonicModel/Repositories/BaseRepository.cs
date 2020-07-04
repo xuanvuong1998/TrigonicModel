@@ -59,7 +59,7 @@ namespace TrigonicModel.Repositories
         }
 
 
-        public void Add(TEntity newObj)
+        public virtual void Add(TEntity newObj)
         {
             dbSet.Add(newObj);
 

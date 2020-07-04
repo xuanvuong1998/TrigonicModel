@@ -7,6 +7,5 @@ namespace TrigonicModel.Repositories.interfaces
 {
     public interface IUserRepository : IRepository<UserAccount>
     {
-        
     }
 }

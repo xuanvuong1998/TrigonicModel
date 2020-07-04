@@ -20,7 +20,7 @@ namespace TrigonicModel.Models
         public int Role { get; set; }
         public string Address { get; set; }
         public int? PaymentId { get; set; }
-
+        
         public virtual PaymentAccount Payment { get; set; }
         public virtual ICollection<Project> Project { get; set; }
         public virtual ICollection<Transaction> Transaction { get; set; }

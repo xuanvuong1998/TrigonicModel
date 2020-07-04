@@ -12,5 +12,7 @@ namespace TrigonicModel.Repositories
         public BonusRepository(DbContext context) : base(context)
         {
         }
+
+        
     }
 }

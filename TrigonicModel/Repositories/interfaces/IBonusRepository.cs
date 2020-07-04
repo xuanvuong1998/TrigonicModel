@@ -7,6 +7,6 @@ namespace TrigonicModel.Repositories.interfaces
 {
     public interface IBonusRepository : IRepository<ProjectBonus>
     {
-        
+
     }
 }

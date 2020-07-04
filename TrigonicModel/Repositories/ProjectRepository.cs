@@ -30,12 +30,13 @@ namespace TrigonicModel.Repositories
         {
             return Context.Project
                     .Where(x => x.Id == projectId)
-                    .Include(x => x.CreatorNavigation)
+                    /*.Include(x => x.CreatorNavigation)
                     .Include(x => x.Term)
                     .Include(x => x.TeamMember)
-                    .Include(x => x.ProjectBonus)
+                    .Include(x => x.ProjectBonus)*/
                     .SingleOrDefault();
         }
+
 
         public IEnumerable<Project> GetProjectsByStatus(string status)
         {
@@ -58,15 +59,17 @@ namespace TrigonicModel.Repositories
             return Get(x => x.Creator == username, null, null);
         }
 
-        public bool UpdateProjectInfomation(string projectId, string highlight, string location, string model)
-        {
-            throw new NotImplementedException();
-        }
+        
+
+
         #endregion
 
         #region Setters
 
-
+        /*public bool UpdateProjectInfomation(string projectId, string highlight, string location, string model)
+        {
+            throw new NotImplementedException();
+        }*/
         #endregion
 
     }

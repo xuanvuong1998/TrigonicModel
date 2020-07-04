@@ -14,7 +14,7 @@ namespace TrigonicModel.Models
         public TrigonicContext(DbContextOptions<TrigonicContext> options)
             : base(options)
         {
-            
+            this.ChangeTracker.LazyLoadingEnabled = false;
         }
 
         public virtual DbSet<InvestmentTerm> InvestmentTerm { get; set; }
@@ -32,7 +32,8 @@ namespace TrigonicModel.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=localhost;Database=SWD_TRIGONIC;Trusted_Connection=True;");
+                optionsBuilder
+                    .UseSqlServer("Server=localhost;Database=SWD_TRIGONIC;Trusted_Connection=True;");
             }
         }
 
@@ -130,7 +131,7 @@ namespace TrigonicModel.Models
 
             modelBuilder.Entity<TermType>(entity =>
             {
-                entity.Property(e => e.Id).ValueGeneratedOnAdd();
+                entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.Desp).IsRequired();
 

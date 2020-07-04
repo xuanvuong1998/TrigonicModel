@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using TrigonicModel.Models;
 using TrigonicModel.Repositories.interfaces;
@@ -13,6 +14,7 @@ namespace TrigonicModel.Repositories
         
         public UnitOfWork(DbContext context)
         {
+            Debug.WriteLine("UOW INSTANCE CREATED!");
             _dbContext = context;
             Projects = new ProjectRepository(context);
             Users = new UserRepository(context);

@@ -2,13 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using TrigonicModel.Models;
 using TrigonicModel.Repositories.interfaces;
 
 namespace TrigonicModel.Repositories
 {
-    class TransactionRepository : BaseRepository<Transaction>, ITransactionRepository
+    public class TransactionRepository : BaseRepository<Transaction>, ITransactionRepository
     {
         private BaseRepository<TransactionBonus> _trancBonusRepo;
         public TransactionRepository(DbContext context) : base(context)
@@ -16,6 +17,7 @@ namespace TrigonicModel.Repositories
             _trancBonusRepo = new TransactionBonusRepository(context);
         }
 
+        public TrigonicContext DbContext { get => dbContext as TrigonicContext; }
 
         public IEnumerable<ProjectBonus> GetInvestorsBonuses(string investor, int projectId)
         {
@@ -34,7 +36,6 @@ namespace TrigonicModel.Repositories
                     null,
                     "Bonus"
                 ).Select(x => x.Bonus);
-
         }
 
         public IEnumerable<Project> GetInvestedProjects(string investor)
@@ -62,11 +63,27 @@ namespace TrigonicModel.Repositories
             return GetByType(investor, projectId, (int)TransactionType.INVEST);
         }
 
+        public IEnumerable<Transaction> GetProjectInvesment(int projectId)
+        {
+            return GetByType(null, projectId, (int)TransactionType.INVEST);
+        }
+
+
         public IEnumerable<Transaction> GetProfitReturnTransactions(int projectId, string investor)
         {
             return GetByType(investor, projectId, (int)TransactionType.INVEST_PROFIT_RETURN);
         }
 
+        public double GetTotalProfitReturned(int projectId, string investor)
+        {
+            return DbContext.Transaction
+                .Where(x => x.ProjectId == projectId
+                           && x.Actor == investor
+                           && x.Status == (int)TransactionStatus.SUCCESS
+                           && x.Type == (int)TransactionType.INVEST_PROFIT_RETURN)
+                .Sum(x => x.Amount);
+        }
+        
         public IEnumerable<Transaction> GetRevenueReturnTransactions(int projectId)
         {
             return GetByType(null, projectId, (int)TransactionType.REVENUE_RETURN);
@@ -91,7 +108,7 @@ namespace TrigonicModel.Repositories
 
             return res;            
         }
-        private Transaction CreateNewTransaction(int projectId, string actor, float amount, TransactionType type)
+        private Transaction CreateNewTransaction(int projectId, string actor, double amount, TransactionType type)
         {
             var obj = new Transaction
             {
@@ -108,22 +125,21 @@ namespace TrigonicModel.Repositories
 
             return obj;
         }
-        public Transaction CreateInvestTransaction(int projectId, string investor, float investAmount)
+        public Transaction CreateInvestTransaction(int projectId, string investor, double investAmount)
         {
             return CreateNewTransaction(projectId, investor, investAmount, TransactionType.INVEST);
         }
 
-        public Transaction CreateProfitReturn(int projectId, string investor, float amount)
+        public Transaction CreateProfitReturn(int projectId, string investor, double amount)
         {
             return CreateNewTransaction(projectId, investor, amount, TransactionType.INVEST_PROFIT_RETURN);
 
         }
 
-        public Transaction CreateRevenueReturn(int projectId, string enterprise, float amount)
+        public Transaction CreateRevenueReturn(int projectId, string enterprise, double amount)
         {
             return CreateNewTransaction(projectId, enterprise, amount, TransactionType.REVENUE_RETURN);
         }
-
 
         #endregion
     }
