@@ -32,10 +32,9 @@
 
     public enum UserRole
     {
-        ADMIN,
-        ENTERPRISE,
-        INVESTOR,
-        MODERATOR
+        ADMIN = 0,
+        ENTERPRISE = 1,
+        INVESTOR = 2
     }
 
 

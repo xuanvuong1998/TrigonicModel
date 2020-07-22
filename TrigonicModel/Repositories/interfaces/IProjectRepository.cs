@@ -12,6 +12,8 @@ namespace TrigonicModel.Repositories.interfaces
         public IEnumerable<Project> GetProjectsByStatus(string status);
 
         public IEnumerable<Project> GetProjectsOfUser(string username);
+
+        
       
     }
 }
