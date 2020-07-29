@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using TrigonicModel.Models;
 using TrigonicModel.Repositories.interfaces;
@@ -30,10 +31,12 @@ namespace TrigonicModel.Repositories
         {
             return Context.Project
                     .Where(x => x.Id == projectId)
-                    /*.Include(x => x.CreatorNavigation)
+                    .Include(x => x.CreatorNavigation)
                     .Include(x => x.Term)
+                    .ThenInclude(y => y.TermType)
                     .Include(x => x.TeamMember)
-                    .Include(x => x.ProjectBonus)*/
+                    .Include(x => x.ProjectBonus)
+                    
                     .SingleOrDefault();
         }
 

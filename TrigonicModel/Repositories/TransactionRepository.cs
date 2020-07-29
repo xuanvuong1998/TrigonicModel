@@ -40,12 +40,22 @@ namespace TrigonicModel.Repositories
 
         public IEnumerable<Project> GetInvestedProjects(string investor)
         {
-            var list = Get(x => x.Actor == investor
+
+            var list2 = DbContext.Transaction
+                        .Where(x => x.Actor == investor
+                    && x.Type == (int)TransactionType.INVEST
+                    && x.Status == (int)TransactionStatus.SUCCESS)
+                        .Include(x => x.Project)
+                        .Select(x => x.Project);
+
+            return list2;
+                      
+            /*var list = Get(x => x.Actor == investor
                     && x.Type == (int)TransactionType.INVEST
                     && x.Status == (int)TransactionStatus.SUCCESS,
                     null, "Project");
 
-            return list.Select(x => x.Project);
+            return list.Select(x => x.Project);*/
         }
 
         private IEnumerable<Transaction> GetByType(
