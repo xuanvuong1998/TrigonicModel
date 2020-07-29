@@ -103,16 +103,17 @@ namespace TrigonicModel.Repositories
 
         private string GenerateTransactionNumber()
         {
-            int length = 50;
+            int length = 12;
 
             Random rand = new Random();
-            string res = "";
+            string res;
 
             do
             {
+                res = "";
                 for (int i = 0; i < length; i++)
                 {
-                    res += (char)rand.Next(0, 10);
+                    res += rand.Next(0, 10);
                 }
             } while (Get(res) != null);
 

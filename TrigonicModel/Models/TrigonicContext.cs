@@ -145,8 +145,7 @@ namespace TrigonicModel.Models
                 entity.HasKey(e => e.TransactionNumber);
 
                 entity.Property(e => e.TransactionNumber)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                    .HasMaxLength(50);
 
                 entity.Property(e => e.Actor)
                     .IsRequired()
